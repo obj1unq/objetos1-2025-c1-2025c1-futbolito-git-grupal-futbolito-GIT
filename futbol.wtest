@@ -1,0 +1,11 @@
+import objetos.*
+import pgmProgram.*
+
+describe "Futbol"{
+    test "Cambiar de titular a visitante"{
+        assert.throwsException({lionel.cambiarCamiseta()})
+        lionel.position(game.at(0,5))
+        lionel.cambiarCamiseta()
+        assert.that(lionel.camisetaEsTitular())
+    }
+}
