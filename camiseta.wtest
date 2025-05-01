@@ -1,0 +1,15 @@
+import objetos.*
+describe "probar cambio de camiseta" {
+  test "camiseta en esquina" {
+      assert.throwsException({ lionel.cambioCamiseta() })
+      lionel.retroceder()
+      lionel.retroceder()
+      lionel.retroceder()
+      lionel.cambioCamiseta()
+      assert.equals(lionel.camiseta(), "lionel-suplente")
+  }
+
+}
+
+
+
