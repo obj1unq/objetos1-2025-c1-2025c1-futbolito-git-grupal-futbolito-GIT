@@ -2,12 +2,13 @@
 import wollok.game.*
 
 object lionel {
-	var property position = game.at(3, 5)
+	var property balon = pelota
 	var property camiseta = camisetaTitular
-	var property bocha = pelota
+	var property position = game.at(3,5)
 	
 	method image() = camiseta.image()
-	
+
+
 	method retroceder() {
 		position = game.at(0.max(position.x() - 1), position.y())
 	}
@@ -15,7 +16,7 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y())
 	}
-	
+
 	method cambiarCamiseta() {
 		self.validarPosicion()
 		camiseta.cambiar(self)
@@ -26,24 +27,40 @@ object lionel {
 				"No esta en el borde izquierdo"
 			)
 	}
-	
-	method taquito() {
+
+	method posicionParaCambiarCamiseta() = self.position().x() == 0
+
+	method levantarla() {
+		balon.subir()
+		balon.bajar()
+	}
+
+	method taquito(){
 		self.validarMismaPosicion()
 		//bocha.position(bocha.position().left(2))
-		bocha.position(game.at(0.max(bocha.position().x() - 2), self.position().y()))
+		balon.position(game.at(0.max(balon.position().x()-2), self.position().y()))
 	}
-	
-	method validarMismaPosicion() {
-		if ((self.position().x() != bocha.position().x()) || (self.position().y() != bocha.position().y()))
+
+	method validarMismaPosicion(){
+		if(self.position().x()!=balon.position().x() || self.position().y()!=balon.position().y()){
 			self.error("no encuentro el fulbo")
+		}
 	}
-	
-	method posicionParaCambiarCamiseta() = self.position().x() == 0
 }
 
 object pelota {
 	const property image = "pelota.png"
 	var property position = game.at(5, 5)
+	
+	method subir() {
+		position = game.at(position.x(), position.y() + 1)
+	}
+	
+	method bajar() {
+		game.schedule(2000, { position = game.at(position.x(), position.y() - 1) })
+	}
+
+
 }
 
 object camisetaSuplente {
