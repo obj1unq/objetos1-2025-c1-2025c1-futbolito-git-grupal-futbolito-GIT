@@ -19,9 +19,9 @@ object lionel {
 	}
 
 	method taquito(){
-		bocha.validarMismaPosicion()
-		bocha.position(bocha.position().left(2))
-		//bocha.position(game.at(0.max(bocha.position().x()-2), self.position().y()))
+		self.validarMismaPosicion()
+		//bocha.position(bocha.position().left(2))
+		bocha.position(game.at(0.max(bocha.position().x()-2), self.position().y()))
 	}
 
 	method validarMismaPosicion(){
