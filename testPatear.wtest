@@ -1,0 +1,24 @@
+import objetos.*
+import pgmProgram.*
+import wollok.game.*
+
+describe "Testeo de patear" {
+    method initialize() {
+	    game.width(15)
+	    game.height(10)
+    }
+
+    test "Revisar posiciones de Messi y la pelota" {
+        lionel.avanzar()
+        lionel.avanzar()
+        assert.equals(5,lionel.position().x())
+    }
+
+    test "Patear y revisar posicion de pelota" {
+        lionel.avanzar()
+        lionel.avanzar()
+        lionel.patear()
+        assert.notEquals(pelota.position().x(),lionel.position().x())
+        assert.equals(8,pelota.position().x())
+    }
+}
